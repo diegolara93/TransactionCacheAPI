@@ -17,7 +17,7 @@ public class Transaction {
     private String transactionType;
     private String transactionDate;
     private String transactionStatus;
-    private String transactionAmount;
+    private Double transactionAmount;
     private String transactionCurrency;
 
     public Transaction(
@@ -27,7 +27,7 @@ public class Transaction {
             String transactionType,
             String transactionDate,
             String transactionStatus,
-            String transactionAmount,
+            Double transactionAmount,
             String transactionCurrency
     ) {
         this.transactionId = transactionId;
@@ -82,10 +82,10 @@ public class Transaction {
     public void setTransactionStatus(String transactionStatus) {
         this.transactionStatus = transactionStatus;
     }
-    public String getTransactionAmount() {
+    public Double getTransactionAmount() {
         return transactionAmount;
     }
-    public void setTransactionAmount(String transactionAmount) {
+    public void setTransactionAmount(Double transactionAmount) {
         this.transactionAmount = transactionAmount;
     }
     public String getTransactionCurrency() {
