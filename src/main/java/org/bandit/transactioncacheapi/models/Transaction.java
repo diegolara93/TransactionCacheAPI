@@ -13,7 +13,6 @@ public class Transaction {
     private Long id;
     private String transactionId;
     private String userId;
-    private String itemId;
     private String transactionType;
     private String transactionDate;
     private String transactionStatus;
@@ -23,7 +22,6 @@ public class Transaction {
     public Transaction(
             String transactionId,
             String userId,
-            String itemId,
             String transactionType,
             String transactionDate,
             String transactionStatus,
@@ -32,7 +30,6 @@ public class Transaction {
     ) {
         this.transactionId = transactionId;
         this.userId = userId;
-        this.itemId = itemId;
         this.transactionType = transactionType;
         this.transactionDate = transactionDate;
         this.transactionStatus = transactionStatus;
@@ -58,12 +55,7 @@ public class Transaction {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    public String getItemId() {
-        return itemId;
-    }
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
+
     public String getTransactionType() {
         return transactionType;
     }
