@@ -25,12 +25,10 @@ public class DataController {
             @RequestParam(required = false) String transactionType,
             @RequestParam(required = false) String transactionStatus
             ) {
-        // Get data from cache here or if a cache miss, get from db thewn save to cache
-        // TEMPORARY
-        return ResponseEntity.ok(List.of(
-                new Transaction("1", "user1", "purchase", "2023-10-01", "completed", 100.0, "USD"),
-                new Transaction("2", "user2", "refund", "2023-10-02", "pending", 50.0, "USD")
-        ));
+
+        List<Transaction> transactions = transactionService.getTransactions(
+                minAmount, maxAmount, transactionType, transactionStatus);
+        return ResponseEntity.ok(transactions);
     }
 
     @GetMapping("/data/health")
@@ -48,8 +46,6 @@ public class DataController {
             @RequestParam String transactionCurrency,
             @RequestParam double transactionAmount
     ) {
-        // Generate data here
-        // TEMPORARY
         Transaction transaction = new Transaction(
                 transactionId,
                 userId,
@@ -60,7 +56,6 @@ public class DataController {
                 transactionCurrency
         );
         transactionService.saveTransaction(transaction);
-        // Save to cache here later
         return ResponseEntity.ok("Data generated" +
                 " transactionId: " + transactionId +
                 " userId: " + userId +
