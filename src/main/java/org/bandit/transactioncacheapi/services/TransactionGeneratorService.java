@@ -29,7 +29,6 @@ public class TransactionGeneratorService {
             Transaction transaction = new Transaction(
                     UUID.randomUUID().toString(), // transactionId
                     "userId",
-                    "itemId",
                     "transactionType",
                     generateRandomTransactionDate(),
                     "PENDING",
