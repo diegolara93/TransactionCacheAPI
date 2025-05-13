@@ -30,6 +30,18 @@ public class TransactionService {
         evictTransactionsCache();
     }
 
+    @Cacheable(value = "transactions", key = "{#mostRecentTransactions}")
+    public List<Transaction> getMostRecentTransactions(int mostRecentTransactions) {
+        List<Transaction> allTransactions = StreamSupport
+                .stream(transactionRepository.findAll().spliterator(), false)
+                .toList();
+
+        return allTransactions.stream()
+                .sorted((t1, t2) -> t2.getTransactionDate().compareTo(t1.getTransactionDate()))
+                .limit(mostRecentTransactions)
+                .collect(Collectors.toList());
+    }
+
     @Cacheable(value = "transactions", key = "{#minAmount, #maxAmount, #transactionType, #transactionStatus}")
     public List<Transaction> getTransactions(
             BigDecimal minAmount,

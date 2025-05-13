@@ -31,6 +31,14 @@ public class DataController {
         return ResponseEntity.ok(transactions);
     }
 
+    @GetMapping("/data/mostRecentTransactions")
+    public ResponseEntity<List<Transaction>> getMostRecentTransactions(
+            @RequestParam int mostRecentTransactions
+    ) {
+        List<Transaction> transactions = transactionService.getMostRecentTransactions(mostRecentTransactions);
+        return ResponseEntity.ok(transactions);
+    }
+
     @GetMapping("/data/health")
     public ResponseEntity<String> healthCheck() {
         return ResponseEntity.ok("OK");
